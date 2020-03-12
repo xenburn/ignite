@@ -3,7 +3,11 @@
 /* tslint:disable */
 
 // speed up `ignite --version` et al
-if (['v', 'version', '-v', '--v', '-version', '--version'].includes(process.argv[2])) {
+if (
+  ['v', 'version', '-v', '--v', '-version', '--version'].includes(
+    process.argv[2]
+  )
+) {
   var contents = require('fs').readFileSync(__dirname + '/../package.json')
   var package = JSON.parse(contents)
 
@@ -24,8 +28,5 @@ if (devMode && !wantsCompiled) {
   sourceDir = __dirname + '/../src'
 }
 
-// check if everything is good to go
-require(sourceDir + '/cli/check.js')
-
 // kick off ignite!
-require(sourceDir + '/cli/cli').run(process.argv)
+require(sourceDir + '/cli').run(process.argv)

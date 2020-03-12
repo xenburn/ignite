@@ -1,12 +1,10 @@
 # Contributing to Ignite CLI
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/) [![Build Status](https://semaphoreci.com/api/v1/ir/ignite/branches/master/shields_badge.svg)](https://semaphoreci.com/ir/react_native_base)
-
 We welcome all contributors to Ignite CLI! This contributing guide will help you get up and running to submit your first pull request.
 
 Before submitting a pull request, you will want to make sure that your branch meets the following requirements:
 
-_These examples assume you're using yarn rather than npm. If you're not using yarn, replace these commands with the [appropriate npm alternative](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc)_
+_Working on Ignite CLI requires Yarn v1._
 
 - Everything works on iOS/Android
 - AVA Tests pass in the root folder (`yarn test`)
