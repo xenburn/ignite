@@ -17,4 +17,12 @@ export const boilerplates: Boilerplate[] = [
     cli: 'ignite-classic',
     template: 'ignite-andross',
   },
+  {
+    name: 'React Native Vanilla TypeScript',
+    highlighted: false,
+    description: "Facebook's TypeScript template",
+    stack: ['React Native', 'TypeScript'],
+    cli: 'react-native-cli',
+    template: 'react-native-template-typescript',
+  },
 ]
