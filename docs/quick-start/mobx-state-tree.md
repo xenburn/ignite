@@ -1,7 +1,7 @@
 # # React Native + mobx-state-tree
 We need a guide to on how to use `mobx-state-tree` (or `mst` for short), so @robinheinze and I are putting this one together.
 
-This is the output of our brainstorm on what to cover.
+After brainstorming, this is what we've come up with.
 
 Feedback welcome!
 
@@ -20,31 +20,31 @@ Feedback welcome!
 ## Why?
 There's a bazillion other state management libs. Why a bazillion + 1?
 
-Because it does a lot for you.  It’s a great middle ground between completely structure (like `redux`) and completely freestyle (like `mobx`).
+Because it does a lot for you.  It’s a great middle ground between completely structured (like `redux`) and completely freestyle (like `mobx`).
 
 It brings more than just state-management to the table as well (such as dependency injection, serialization, and lifecycle events.
 
 ## Small Note about TypeScript
-Not only have we switched to `mst` from `redux`, but we also switched from `JavaScript` to `TypeScript`.  
+Not only have we switched to `mst` from `redux`, but we've also switched from `JavaScript` to `TypeScript`.  
 
 
 # Some of the Highlights
 * Mostly intuitive (concept props and actions).
 * Computed values are only recalculated if their upstream sources change.
-* Computed values are only calculated if someone care
+* Computed values are only calculated if someone cares
 * Some guidance is given to how you should structure your app
 * It feels database-y - (identifiers & references & views)
-* `onSnapshot`, `onAction`, and `onPatch` is brilliant
-* `extends` & `compose` is pretty great
+* `onSnapshot`, `onAction`, and `onPatch` are brilliant
+* `extends` & `compose` are pretty great
 * life cycle events are pretty great
 
 # Some of the Fumbles
-* Typing with `TypeScript` can be tricky.  Since a model can be made out of separate blocks, the type system doesn’t have a complete picture.
-* Some people have said `mobx` and `mobx-state-tree` has too much sorcery or magic.
+* Typing models with `TypeScript` can be tricky.  Since a model can be made out of separate blocks, the type system doesn’t have a complete picture.
+* Some people have said `mobx` and `mobx-state-tree` rely too much on magic.
 * Finding information about it is hard on the inter-tubes.  It’s a bit of a sleeper library.
-* Error messages and tooltips are sometimes hilariously verbose.
+* Error messages and tooltips can be hilariously verbose at times.
 * The api has a huge surface area.
-* Docs aren't beginner-friendly.  They’re very advanced-friendly though.
+* The docs aren't beginner-friendly.  They’re very advanced-friendly though.
 * Not a fan of the name `views` for computed fields.
 
 # Installing
@@ -83,17 +83,17 @@ It would cover:
 * no more `action types`
 * no more `actionCreators`
 * no more `reducers` * (your functions are now guardians of state)
-* no more needing 3rd party library to perform side effects (`redux-saga`, `redux-observable`, `redux-thunk`)
+* no more needing a 3rd party library to perform side effects (`redux-saga`, `redux-observable`, `redux-thunk`)
 * no need to use `immutable.js` or `seamless-immutable` to enforce immutability
 
 #### Worse than `redux`
-* `redux` has much better ecosystem of add-ons, middleware, and debuggers
+* `redux` has a much better ecosystem of add-ons, middleware, and debuggers
 * `redux` scales beautifully -- adding feature #39 is the same as adding feature #2
 * `redux` has a tonne of information about it
 
 
 ## Gotchas
-* String indexer accessors doesn't trigger observers.  This is a `mobx` thing.
+* String indexer accessors don't trigger observers.  This is a `mobx` thing.
 
 ```ts
 // given
@@ -110,8 +110,8 @@ const name = prop('name', o) // from ramda
 
 * Views & actions that depend on other views & actions can be a bit tricky to get right in TypeScript (there are some workarounds).
 * SnapshotType makes all the properties `any?` even though we have type information and know if something is optional.
-* `flow()` being generators are kinda backwards since we’re used to `await`ing `Promise`s, not `yield`ing them.
-* `identifier()`s must have the thing they point exist *first*  in the state tree.  Think of this like a foreign key constraint.
+* `flow()` being generators, are kinda backwards since we’re used to `await`ing `Promise`s, not `yield`ing them.
+* `identifier()`s must have the thing they point to exist *first*  in the state tree.  Think of this like a foreign key constraint.
 * `identifier`s are objects, however you can put a key (like an id) in the snapshot type. User will have a `car` instead of a `car_id`, but the value is a `string`. An example will make this clearer.
 * `slice()` -- `FlatList` integration needs a "hack" (e.g. `extraData = {{ lulz: users.length }}`)
 * Too much data is slow in `__DEV__` mode (especially in Android) because they use `Object.freeze`.  This doesn't happen in production.
@@ -139,7 +139,7 @@ const name = prop('name', o) // from ramda
 * Stores grow code fast, so prefer many smaller stores to monolith stores (instead of a giant `UserStore`, prefer a `CurrentUserStore`, `LoginStore`, `SignupStore`, `UserPreferencesStores`)
 
 ## Computed Views
-These are awesome.  Use as many as you can. Much of the calculations in your React components can be lifted up here.
+These are awesome.  Use as many as you can. Many of the calculations in your React components can be lifted up here.
 
 ## Actions
 * use `flow`
@@ -153,7 +153,7 @@ How we save things with AsyncStorage. To/from.
 
 
 ## Environment
-These are things like `api`s.  Generally there to communicate data into and out of your app.
+These are things like `api`s.  Generally they're there to communicate data, both into and out of your app.
 
 * configured at startup
 * examples: api, firebase, analytics, biometrics, pusher, push notifications, etc.
